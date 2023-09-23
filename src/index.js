@@ -1,14 +1,5 @@
-import http from "http";
+import app from "./server.js";
 
-const server = http.createServer((req, res) => {
-  if (req.method === "GET" && req.url === "/") {
-    res.statusCode = 200;
-    console.log("Hello from the server!");
-
-    res.end();
-  }
-});
-
-server.listen(3000, () => {
+app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
