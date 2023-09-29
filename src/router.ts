@@ -5,7 +5,9 @@ const router = Router();
 /**
  * Product
  */
-router.get("/product", () => {});
+router.get("/product", (req, res) => {
+    res.json({message: "Hello!"})
+});
 
 //dynamic request parameter id
 router.get("/product/:id", () => {});
