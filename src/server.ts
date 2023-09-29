@@ -1,9 +1,11 @@
 import express from "express";
 import router from "./router";
 import morgan from "morgan";
+import {protect} from "./utils/auth";
 
 const app = express();
 
+//app.use - to apply middleware globally
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -14,8 +16,7 @@ app.get("/", (req, res) => {
   res.json({ message: "hello" });
 });
 
-//app.use - to apply some global configuration
-//
-app.use("/api", router);
+//protect -> using our auth middleware to protect the api router
+app.use("/api", protect, router);
 
 export default app;
