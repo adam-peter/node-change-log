@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
+import bcrypt from "bcrypt";
 
 //load the .env file contents
 dotenv.config();
@@ -40,7 +41,17 @@ export const protect = (req, res, next) => {
         next();
     } catch (e) {
         console.log(e);
-        res.status(500);
-        res.json({ message: "Internal server error" });
+        res.status(401);
+        res.json({ message: "Token not valid" });
     }
 };
+
+export const comparePasswords = (password, hashedPassword) => {
+    return bcrypt.compare(password, hashedPassword);
+}
+
+export const hashPassword = async (password) => {
+    //hash(plainTextPassword, salt) - salt is like a minecraft seed for hashing
+    return bcrypt.hash(password, 8);
+}
+
