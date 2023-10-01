@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { body, validationResult } from "express-validator";
+import { handleInputValidation } from "./utils/functions";
 
 const router = Router();
 
@@ -15,16 +16,12 @@ router.get("/product/:id", () => {});
 //body(enforcedField).rule() - validationResult checks the enforced fields in the request
 //you can store the input validators inside an array. You can store the arrays in utils/validators.ts
 router.put("/product/:id", body("name").isString(), (req, res) => {
-    const errors = validationResult(req);
-    console.log(errors);
-
-    if (!errors.isEmpty()) {
-        res.status(400);
-        res.json({ errors: errors.array() });
-    }
+    handleInputValidation(res, validationResult(req));
 });
 
-router.post("/product", () => {});
+router.post("/product", body("name").isString(), (req, res) => {
+    handleInputValidation(res, validationResult(req));
+});
 
 router.delete("/product/:id", () => {});
 
@@ -35,11 +32,25 @@ router.get("/update", () => {});
 
 router.get("/update/:id", () => {});
 
-router.put("/update/:id", () => {});
+router.put(
+    "/update/:id",
+    body(["title", "body", "version", "asset"]).isString(),
+    (req, res) => {
+        handleInputValidation(res, validationResult(req));
+    }
+);
 
-router.post("/update", () => {});
+router.post(
+    "/update",
+    body(["title", "body"]).notEmpty().isString(),
+    body(["version", "asset"]).notEmpty().isString(),
+    body("status").notEmpty(),
+    (req, res) => {
+        handleInputValidation(res, validationResult(req));
+    }
+);
 
-router.delete("/update/:id", () => {});
+router.delete("/update/:id", (req, res) => {});
 
 /**
  * Update Points
@@ -48,9 +59,22 @@ router.get("/updatepoint", () => {});
 
 router.get("/updatepoint/:id", () => {});
 
-router.put("/updatepoint/:id", () => {});
+router.put(
+    "/updatepoint/:id",
+    body(["name", "description"]).notEmpty().isString(),
+    (req, res) => {
+        //#
+        handleInputValidation(res, validationResult(req));
+    }
+);
 
-router.post("/updatepoint", () => {});
+router.post(
+    "/updatepoint",
+    body(["name", "description"]).notEmpty().isString(),
+    (req, res) => {
+        handleInputValidation(res, validationResult(req));
+    }
+);
 
 router.delete("/updatepoint/:id", () => {});
 
