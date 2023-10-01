@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { body, validationResult } from "express-validator";
 
 const router = Router();
 
@@ -6,14 +7,22 @@ const router = Router();
  * Product
  */
 router.get("/product", (req, res) => {
-    res.json({message: "Hello!"})
+    res.json({ message: "Hello!" });
 });
 
-//dynamic request parameter id
 router.get("/product/:id", () => {});
 
-//put = complete update of the record; patch = updates only updated properties
-router.put("/product/:id", () => {});
+//body(enforcedField).rule() - validationResult checks the enforced fields in the request
+//you can store the input validators inside an array. You can store the arrays in utils/validators.ts
+router.put("/product/:id", body("name").isString(), (req, res) => {
+    const errors = validationResult(req);
+    console.log(errors);
+
+    if (!errors.isEmpty()) {
+        res.status(400);
+        res.json({ errors: errors.array() });
+    }
+});
 
 router.post("/product", () => {});
 
