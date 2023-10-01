@@ -40,16 +40,17 @@ router.get("/update/:id", () => {});
 
 router.put(
     "/update/:id",
-    body(["title", "body", "version", "asset"]).isString(),
+    body(["title", "body"]).exists().isString(),
+    body(["version", "asset"]).optional().isString(),
+    body("status").isIn(["IN_PROGRESS", "SHIPPED", "DEPRECATED"]),
     handleInputValidation,
     (req, res) => {}
 );
 
 router.post(
     "/update",
-    body(["title", "body"]).notEmpty().isString(),
-    body(["version", "asset"]).notEmpty().isString(),
-    body("status").notEmpty(),
+    body(["title", "body", "version", "asset"]).optional().isString(),
+    body("status").isIn(["IN_PROGRESS", "SHIPPED", "DEPRECATED"]),
     handleInputValidation,
     (req, res) => {}
 );
@@ -65,16 +66,14 @@ router.get("/updatepoint/:id", () => {});
 
 router.put(
     "/updatepoint/:id",
-    body(["name", "description"]).notEmpty().isString(),
+    body(["name", "description"]).optional().isString(),
     handleInputValidation,
-    (req, res) => {
-        //#
-    }
+    (req, res) => {}
 );
 
 router.post(
     "/updatepoint",
-    body(["name", "description"]).notEmpty().isString(),
+    body(["name", "description", "updateId"]).exists().isString(),
     handleInputValidation,
     (req, res) => {}
 );
