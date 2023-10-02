@@ -1,17 +1,22 @@
 import { Router } from "express";
-import { body, validationResult } from "express-validator";
+import { body } from "express-validator";
 import { handleInputValidation } from "./utils/middleware";
+import {
+    createProduct,
+    deleteProduct,
+    getProduct,
+    getProducts,
+    updateProduct,
+} from "./handlers/product";
 
 const router = Router();
 
 /**
  * Product
  */
-router.get("/product", (req, res) => {
-    res.json({ message: "Hello!" });
-});
+router.get("/product", getProducts);
 
-router.get("/product/:id", () => {});
+router.get("/product/:id", getProduct);
 
 //body(enforcedField).rule() - validationResult checks the enforced fields in the request
 //you can store the input validators inside an array. You can store the arrays in utils/validators.ts
@@ -19,17 +24,17 @@ router.put(
     "/product/:id",
     body("name").isString(),
     handleInputValidation,
-    (req, res) => {}
+    updateProduct
 );
 
 router.post(
     "/product",
     body("name").isString(),
     handleInputValidation,
-    (req, res) => {}
+    createProduct
 );
 
-router.delete("/product/:id", () => {});
+router.delete("/product/:id", deleteProduct);
 
 /**
  * Update
