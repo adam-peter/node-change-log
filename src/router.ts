@@ -8,6 +8,13 @@ import {
     getProducts,
     updateProduct,
 } from "./handlers/product";
+import {
+    createUpdate,
+    deleteUpdate,
+    getUpdate,
+    getUpdates,
+    updateUpdate,
+} from "./handlers/update";
 
 const router = Router();
 
@@ -39,28 +46,28 @@ router.delete("/product/:id", deleteProduct);
 /**
  * Update
  */
-router.get("/update", () => {});
+router.get("/update", getUpdates);
 
-router.get("/update/:id", () => {});
+router.get("/update/:id", getUpdate);
 
 router.put(
     "/update/:id",
-    body(["title", "body"]).exists().isString(),
+    body(["title", "body"]).optional().isString(),
     body(["version", "asset"]).optional().isString(),
-    body("status").isIn(["IN_PROGRESS", "SHIPPED", "DEPRECATED"]),
+    body("status").isIn(["IN_PROGRESS", "SHIPPED", "DEPRECATED"]).optional(),
     handleInputValidation,
-    (req, res) => {}
+    updateUpdate
 );
 
 router.post(
     "/update",
-    body(["title", "body", "version", "asset"]).optional().isString(),
-    body("status").isIn(["IN_PROGRESS", "SHIPPED", "DEPRECATED"]),
+    body(["title", "body", "productId"]).exists().isString(),
+    body("status").isIn(["IN_PROGRESS", "SHIPPED", "DEPRECATED"]).optional(),
     handleInputValidation,
-    (req, res) => {}
+    createUpdate
 );
 
-router.delete("/update/:id", (req, res) => {});
+router.delete("/update/:id", deleteUpdate);
 
 /**
  * Update Points
