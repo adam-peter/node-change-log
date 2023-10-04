@@ -15,6 +15,7 @@ import {
     getUpdates,
     updateUpdate,
 } from "./handlers/update";
+import { errorHandler } from "./handlers/error";
 
 const router = Router();
 
@@ -91,5 +92,7 @@ router.post(
 );
 
 router.delete("/updatepoint/:id", () => {});
+
+router.use(errorHandler);
 
 export default router;

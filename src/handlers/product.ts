@@ -30,18 +30,22 @@ export const getProduct = async (req, res) => {
 };
 
 //POST one
-export const createProduct = async (req, res) => {
-    const product = await prisma.product.create({
-        data: {
-            //app.use(express.json) - turns req into a json
-            name: req.body.name,
-            belongsToId: req.user.id,
-        },
-    });
+export const createProduct = async (req, res, next) => {
+    try {
+        const product = await prisma.product.create({
+            data: {
+                //app.use(express.json) - turns req into a json
+                name: req.body.name,
+                belongsToId: req.user.id,
+            },
+        });
 
-    res.json({
-        data: product,
-    });
+        res.json({
+            data: product,
+        });
+    } catch (e) {
+        next(e);
+    }
 };
 
 //PUT one

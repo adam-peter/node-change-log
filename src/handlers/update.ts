@@ -81,11 +81,7 @@ export const createUpdate = async (req, res) => {
     }
 
     const update = await prisma.update.create({
-        data: {
-            title: req.body.title,
-            body: req.body.body,
-            product: { connect: { id: product.id } },
-        },
+        data: req.body,
     });
 
     res.json({ data: update });

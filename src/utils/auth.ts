@@ -1,9 +1,5 @@
 import jwt from "jsonwebtoken";
-import * as dotenv from "dotenv";
 import bcrypt from "bcrypt";
-
-//load the .env file contents
-dotenv.config();
 
 //include unique user info for the JWT to parse - id, username, Role (for different access), etc.
 export const createJWT = (user) => {
