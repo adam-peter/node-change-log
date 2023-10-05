@@ -21,7 +21,8 @@ Welcome to the Change Log API, a RESTful API built with Node.js and Express. Thi
 - **Endpoint:** `/`
 - **Method:** `GET`
 - **Description:** Test command to check the API's functionality.
-
+<br>
+<br>
 
 ### User
 
@@ -31,7 +32,8 @@ Welcome to the Change Log API, a RESTful API built with Node.js and Express. Thi
   - `username` (required): The username of the new user.
   - `password` (required): The password for the new user.
 - **Description:** Create a new user.
-
+<br>
+<br>
 
 - **Endpoint:** `/signin`
 - **Method:** `POST`
@@ -40,6 +42,8 @@ Welcome to the Change Log API, a RESTful API built with Node.js and Express. Thi
   - `password` (required): The password of the user.
 - **Response:** JWT token upon successful authentication.
 - **Description:** Sign in a user.
+<br>
+<br>
 
 ### Product
 
@@ -47,13 +51,15 @@ Welcome to the Change Log API, a RESTful API built with Node.js and Express. Thi
 - **Method:** `GET`
 - **Response:** All product objects stored for the user.
 - **Description:** Retrieve all products.
-
+<br>
+<br>
 
 - **Endpoint:** `/api/product/:id`
 - **Method:** `GET`
 - **Response:** Details of the product with the specified ID (must belong to the user).
 - **Description:** Retrieve a specific product.
-
+<br>
+<br>
 
 - **Endpoint:** `/api/product/:id`
 - **Method:** `PUT`
@@ -61,7 +67,8 @@ Welcome to the Change Log API, a RESTful API built with Node.js and Express. Thi
   - `name` (required): The updated name of the product.
 - **Response:** Updated product details.
 - **Description:** Update a specific product.
-
+<br>
+<br>
 
 - **Endpoint:** `/api/product`
 - **Method:** `POST`
@@ -69,12 +76,15 @@ Welcome to the Change Log API, a RESTful API built with Node.js and Express. Thi
   - `name` (required): The name of the new product.
 - **Response:** Created product details.
 - **Description:** Create a new product.
-
+<br>
+<br>
 
 - **Endpoint:** `/api/product/:id`
 - **Method:** `DELETE`
 - **Response:** Success message.
 - **Description:** Delete a specific product (must belong to the user).
+<br>
+<br>
 
 ### Update
 
@@ -82,13 +92,15 @@ Welcome to the Change Log API, a RESTful API built with Node.js and Express. Thi
 - **Method:** `GET`
 - **Response:** All updates created by the user.
 - **Description:** Retrieve all updates.
-
+<br>
+<br>
 
 - **Endpoint:** `/api/update/:id`
 - **Method:** `GET`
 - **Response:** Details of the update with the specified ID (must belong to the user).
 - **Description:** Retrieve a specific update.
-
+<br>
+<br>
 
 - **Endpoint:** `/api/update/:id`
 - **Method:** `PUT`
@@ -100,7 +112,8 @@ Welcome to the Change Log API, a RESTful API built with Node.js and Express. Thi
   - `status` (optional): The updated status of the update.
 - **Response:** Updated update details.
 - **Description:** Update a specific update.
-
+<br>
+<br>
 
 - **Endpoint:** `/api/update`
 - **Method:** `POST`
@@ -113,12 +126,15 @@ Welcome to the Change Log API, a RESTful API built with Node.js and Express. Thi
   - `status` (optional): The status of the update.
 - **Response:** Created update details.
 - **Description:** Create a new update for a product.
-
+<br>
+<br>
 
 - **Endpoint:** `/api/update/:id`
 - **Method:** `DELETE`
 - **Response:** Success message.
 - **Description:** Delete a specific update (must belong to the user).
+<br>
+<br>
 
 ## Getting Started
 
