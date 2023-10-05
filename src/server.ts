@@ -15,9 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res, next) => {
-    setTimeout(() => {
-        next(new Error("async error time!"));
-    }, 1);
+    res.json({message: "hello from express"})
 });
 
 //protect -> using our auth middleware to protect the api router
