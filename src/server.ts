@@ -22,8 +22,8 @@ app.get("/", (req, res, next) => {
 app.use("/api", protect, router);
 
 //Create
-app.post("/user", body(["name", "password"]).exists().isString(), handleInputValidation, createNewUser);
-app.post("/signin", body(["name", "password"]).exists().isString(), handleInputValidation, signin);
+app.post("/user", body(["username", "password"]).exists().isString(), handleInputValidation, createNewUser);
+app.post("/signin", body(["username", "password"]).exists().isString(), handleInputValidation, signin);
 
 app.use(errorHandler);
 
